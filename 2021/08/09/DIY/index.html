@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>基于NT3H1101W0FHKH芯片的NFC卡片 - HHZ&#39;S HUB</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="HHZ&#39;S HUB,"> 
+    <meta name="description" content="可以用来做钥匙扣的nfc名片体积小巧  功耗低参考开源方案https://www.instructables.com/PCB-Business-Card-With-NFC/
+1. 原理介绍
+什么是N,"> 
+    <meta name="author" content="HHHZO"> 
+    <link rel="alternative" href="atom.xml" title="HHZ&#39;S HUB" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">HHZ&#39;S HUB</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">基于NT3H1101W0FHKH芯片的NFC卡片</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">基于NT3H1101W0FHKH芯片的NFC卡片</h1>
+        <div class="stuff">
+            <span>八月 09, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/DIY/" rel="tag">DIY</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1/" rel="tag">电子设计</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="可以用来做钥匙扣的nfc名片"><a href="#可以用来做钥匙扣的nfc名片" class="headerlink" title="可以用来做钥匙扣的nfc名片"></a>可以用来做钥匙扣的nfc名片</h2><p>体积小巧  功耗低<br><strong>参考开源方案</strong><br><a target="_blank" rel="noopener" href="https://www.instructables.com/PCB-Business-Card-With-NFC/">https://www.instructables.com/PCB-Business-Card-With-NFC/</a></p>
+<h2 id="1-原理介绍"><a href="#1-原理介绍" class="headerlink" title="1. 原理介绍"></a>1. 原理介绍</h2><ol>
+<li>什么是NFC?<br>NFC 是近场通信（Near Field Communication）的缩写。<br>它是一种短距离无线电技术，可让距离较近的设备之间通信。<br>NFC 系统基于传统的高频 (HF) RFID，工作频率为 13.56 MHz。<br>NFC为主从式通信，主设备称为读写器，从设备称为标签。<br>NFC通信具有使用便捷，安全性高的优点</li>
+<li>NFC原理<br>NFC 总是涉及一个发起者和一个目标：<br>发射者主动产生一个射频场，可以使用两个环形天线之间的电磁感应为无源目标（标签）供电，同时通过线圈上的电信号进行通信。</li>
+</ol>
+<p><img src="/img/diy/yl.png"><em>线圈发射原理简图</em><br><img src="/img/diy/nfcyuanli.png"><em>nfc原理图</em></p>
+<h2 id="2-IC选型"><a href="#2-IC选型" class="headerlink" title="2. IC选型"></a>2. IC选型</h2><p>我对于该NFC ic的要求是<br><strong>小型 SMD 封装</strong><br><strong>足够的内存用于储存我的信息</strong><br><strong>嵌入式能量收集模块，低功耗</strong><br><strong>小巧且成本低</strong><br><strong>开发简单，读写方便</strong></p>
+<p>于是我选用了NXP的支持APP读写的NFC-IC NT3H1101W0FHKH（两块多钱一片还要啥自行车）</p>
+<p>“The NTAG I2C is the first product of NXP’s NTAG family offering both contactless and contact interfaces (see Figure 1). In addition to the passive NFC Forum compliant contactless interface, the IC features an I2C contact interface, which can communicate with a microcontroller if the NTAG I2C is powered from an external power supply. An additional externally powered SRAM mapped into the memory allows a fast data transfer between the RF and I2C interfaces and vice versa, without the write cycle limitations of the EEPROM memory. The NTAG I2C product features a configurable field detection pin, which provides a trigger to an external device depending on the activities at the RF interface. The NTAG I2C product can also supply power to external (low power) devices (e.g. a microcontroller) via the embedded energy harvesting circuitry.”<br><img src="/img/diy/nth.png"><br><img src="/img/diy/xqfz.png"><br><em>IC datasheet</em></p>
+<h2 id="3-外围电路设计与PCB绘制"><a href="#3-外围电路设计与PCB绘制" class="headerlink" title="3. 外围电路设计与PCB绘制"></a>3. 外围电路设计与PCB绘制</h2><p>仅有IC是无法完成我们想要的nfc电路的，我们还需要外围的电磁感应线圈和限流电阻以及滤波电容，还可以加上LED显示电路的工作状态。</p>
+<h4 id="1-线圈参数计算"><a href="#1-线圈参数计算" class="headerlink" title="1. 线圈参数计算"></a>1. 线圈参数计算</h4><p>要进行通信和供电，NFC标签必须具有天线。<br>天线设计从NFC芯片及其环形天线的等效模型开始：<br><img src="/img/diy/rf.png"></p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Voc</strong></td>
+<td>环形天线中磁场感应的开路电压</td>
+</tr>
+<tr>
+<td><strong>Ra</strong></td>
+<td>环形天线的等效电阻</td>
+</tr>
+<tr>
+<td><strong>La</strong></td>
+<td>环形天线的等效电感</td>
+</tr>
+<tr>
+<td><strong>Rs</strong></td>
+<td>NFC芯片的串联等效电阻</td>
+</tr>
+<tr>
+<td><strong>Cs</strong></td>
+<td>NFC 芯片的串行等效调谐电容</td>
+</tr>
+</tbody></table>
+<p>串联 RLC 电路的谐振频率由以下公式给出： </p>
+<p>$$ f=\frac{1}{2π\sqrt{L*C}} $$</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>f</td>
+<td>是谐振频率 (Hz)</td>
+</tr>
+<tr>
+<td>L</td>
+<td>是电路的等效电感（H）</td>
+</tr>
+<tr>
+<td>C</td>
+<td>是电路的等效电容（F）</td>
+</tr>
+</tbody></table>
+<p>经过计算：$L=\frac{1}{C{(2πf)}^2}$<br>已知 NFC 工作频率为 13,56 MHz 且 NT3H1101 调谐电容器为 50 pF，计算电感 $L=2.75*10^{-6}H$</p>
+<p><img src="/img/diy/xianquan.png"></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a0 &amp; b0</td>
+<td>天线的整体尺寸 (m)</td>
+</tr>
+<tr>
+<td>aavg &amp; bavg</td>
+<td>天线的平均尺寸 (m)</td>
+</tr>
+<tr>
+<td>t</td>
+<td>轨道厚度 (m)</td>
+</tr>
+<tr>
+<td>w</td>
+<td>轨道宽度 (m)</td>
+</tr>
+<tr>
+<td>g</td>
+<td>轨道之间的间隙 (m)</td>
+</tr>
+<tr>
+<td>Nant</td>
+<td>圈数</td>
+</tr>
+<tr>
+<td>d</td>
+<td>轨道当量直径（m）</td>
+</tr>
+</tbody></table>
+<p><img src="/img/diy/form.png"></p>
+<p>最终我们得到的线圈的各项参数为：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a0</td>
+<td>50 mm</td>
+</tr>
+<tr>
+<td>b0</td>
+<td>37 mm</td>
+</tr>
+<tr>
+<td>t</td>
+<td>34,79 µm (1oz)</td>
+</tr>
+<tr>
+<td>w</td>
+<td>0,3 mm</td>
+</tr>
+<tr>
+<td>g</td>
+<td>0,3 mm</td>
+</tr>
+<tr>
+<td>Nant</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<h4 id="2-外围电路参数计算"><a href="#2-外围电路参数计算" class="headerlink" title="2. 外围电路参数计算"></a>2. 外围电路参数计算</h4><p>电容起滤波之效用，取值较为随意<br>电阻是用来保护LED防止击穿<br>所以在NFC正常工作时，LED上的电压应该保持在3.7v正常范围内<br>所以R不应该小于100Ω，这里选用300Ω的0603电阻</p>
+<h4 id="3-原理图绘制"><a href="#3-原理图绘制" class="headerlink" title="3.原理图绘制"></a>3.原理图绘制</h4><p>根据NT3H1101W0FHKH的数据手册，在立创EDA软件上完成原理图的绘制</p>
+<p><img src="/img/diy/Schematic_NFC%E7%A4%BC%E7%89%A9%E5%8D%A1%E7%89%87_2021-08-09.png"></p>
+<h4 id="4-PCB绘制"><a href="#4-PCB绘制" class="headerlink" title="4.PCB绘制"></a>4.PCB绘制</h4><p>本卡片设计目的是便于随身携带，所以应当尽可能的小巧精致并且美观<br>最终设计为</p>
+<p><img src="/img/diy/chengpin.png"></p>
+<p>在绘制PCB的过程中，应该特别注意<strong>不能使用大面积的铺铜</strong><br>因为无线电波不能穿过金属，并且天线上方或下方不得有铜平面</p>
+<h4 id="5-GERBER导出及生产"><a href="#5-GERBER导出及生产" class="headerlink" title="5.GERBER导出及生产"></a>5.GERBER导出及生产</h4><p>（嘉立创现在每个月免费的样板机会，从7月开始还有紫色的阻焊，冲就完事了<br><img src="/img/diy/biaoqing1.jpg"></p>
+<h4 id="6-焊接制作"><a href="#6-焊接制作" class="headerlink" title="6.焊接制作"></a>6.焊接制作</h4><p>因为NT3H1101W0FHKH是XQFN-8_L1.6-W1.6-P0.50-BR封装，所以不能用烙铁来进行焊接<br>这里我使用了PTC加热板和锡膏的快乐套装（注意安全）<br>很快啊，就做好了&#x1F61C;</p>
+<h2 id="3-实物展示"><a href="#3-实物展示" class="headerlink" title="3.实物展示"></a>3.实物展示</h2><p><img src="/img/diy/shiwu.png"></p>
+<h2 id="谢谢你的观看"><a href="#谢谢你的观看" class="headerlink" title="谢谢你的观看"></a>谢谢你的观看</h2>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://music.163.com/outchain/player?type=2&id=1309073904&auto=1&height=66"></iframe>'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
